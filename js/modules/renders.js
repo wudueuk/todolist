@@ -8,26 +8,29 @@ export const renderTask = (task) => {
   tdId.className = 'td-id';
 
   const tdTask = document.createElement('td');
-  tdTask.className = task.ready ?
-    'text-decoration-line-through' : 'task';
   tdTask.textContent = task.task;
-  task.ready ? tdTask.contentEditable = 'false' :
-    tdTask.contentEditable = 'true';
 
   const tdStatus = document.createElement('td');
   tdStatus.className = 'status';
-  tdStatus.textContent = task.ready ? 'Завершена' : 'Выполняется';
 
   const tdButtons = document.createElement('td');
-
-  const delButton = createButton('Удалить');
-  delButton.classList.add('btn-danger');
-
-  const endButton = createButton('Завершить');
-  endButton.classList.add('btn-success');
-  if (task.ready) endButton.classList.add('disabled');
-
+  const delButton = createButton('Удалить', 'btn-danger');
+  const endButton = createButton('Завершить', 'btn-success');
+  //const editButton = createButton('Редактировать', 'btn-warning');
   tdButtons.append(delButton, ' ', endButton);
+  //tdButtons.append(delButton, ' ', endButton, ' ', editButton);
+
+  if (task.ready) {
+    tdTask.className = 'text-decoration-line-through';
+    tdTask.contentEditable = 'false';
+    tdStatus.textContent = 'Завершена';
+    endButton.classList.add('disabled');
+    //editButton.classList.add('disabled');
+  } else {
+    tdTask.className = 'task';
+    tdTask.contentEditable = 'true';
+    tdStatus.textContent = 'Выполняется';
+  }
 
   row.append(tdId, tdTask, tdStatus, tdButtons);
 

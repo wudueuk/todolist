@@ -11,7 +11,7 @@ export const setStorage = (user, data) => {
 
 export const getStorage = user => JSON.parse(localStorage.getItem(user));
 
-export const removeTask = target => {
+export const removeTask = (user, todoList, target) => {
   const row = target.closest('tr');
   row.className = 'table-success';
   const task = row.querySelector('.task');

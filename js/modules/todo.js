@@ -73,7 +73,7 @@ export const todoApp = user => {
     }
     // Завершение задачи
     if (target.classList.contains('btn-success')) {
-      removeTask(target);
+      removeTask(user, todoList, target);
     }
   });
 };

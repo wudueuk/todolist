@@ -123,9 +123,10 @@ export const createTaskTable = () => {
   return table;
 };
 
-export const createButton = text => {
+export const createButton = (text, css) => {
   const button = document.createElement('button');
   button.className = 'btn';
+  button.classList.add(css);
   button.textContent = text;
 
   return button;
